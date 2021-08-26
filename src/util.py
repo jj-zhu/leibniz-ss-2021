@@ -73,52 +73,6 @@ def exp_kernel(X, Y=None, sigma=None):
     np.exp(K, K)  # exponentiate K in-place
     return K
 
-
-def medium_heuristic(X, Y):
-    '''
-    the famous kernel medium heuristic
-    :param X:
-    :param Y:
-    :return:
-    '''
-    distsqr = euclidean_distances(X, Y, squared=True)
-    kernel_width = np.sqrt(0.5 * np.median(distsqr))
-
-    '''in sklearn, kernel is done by K(x, y) = exp(-gamma ||x-y||^2)'''
-    kernel_gamma = 1.0 / (2 * kernel_width ** 2)
-
-    return kernel_width, kernel_gamma
-
-
-def sum_of_kernel(X, Y=None, gamma=None, scale_sum=[0.01, 0.1, 1.0, 10, 100]):
-    '''sum of kernels, same as the casadi version, but use sklearn/numpy'''
-
-    X, Y = check_pairwise_arrays(X, Y)
-    if gamma is None:
-        gamma = 1.0 / X.shape[1]
-
-    K = euclidean_distances(X, Y, squared=True)
-
-    # make sum of kernels
-    sok = 0 # sum of kernels
-    for s in scale_sum:
-        Kk = - s * gamma * K # scaled gram mat
-        sok += np.exp(Kk, Kk) # exponentiate K in-place
-    return sok
-
-
-def matDecomp(K):
-    # import scipy
-    # decompose matrix
-    try:
-        L = np.linalg.cholesky(K)
-    except:
-        print('warning, K is singular')
-        d, v = np.linalg.eigh(K) #L == U*diag(d)*U'. the scipy function forces real eigs
-        d[np.where(d < 0)] = 0 # get rid of small eigs
-        L = v @ np.diag(np.sqrt(d))
-    return L
-
 # %% run
 if __name__ == '__main__':
     pass

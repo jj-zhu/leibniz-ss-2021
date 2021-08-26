@@ -8,7 +8,7 @@ from pylab import *
 from casadi import *
 
 # func def
-def scenario_mpc(x0_sample, n_sample, N, dt, nx, tgrid, is_plot=True, name_savefig=None, is_return_all=True, is_test=False, u_input=None):
+def scenario_mpc(x0_sample, n_sample, N, dt, nx, tgrid, goal_stabilize=3.0, is_plot=True, name_savefig=None, is_return_all=True, is_test=False, u_input=None):
     ##
     # ----------------------------------
     #    continuous system dot(x)=f(x,u)
@@ -122,12 +122,11 @@ def scenario_mpc(x0_sample, n_sample, N, dt, nx, tgrid, is_plot=True, name_savef
 
     U = hcat(U)
 
-    #%% jz:expected cost
-    # prep for expected cost
+    #%% prep for expected cost
     sum_i = 0
     for i in range(n_sample):
         try:
-            sum_i += sumsqr(vertcat(*[X[j][0, i] for j in range(N + 1)]) - 3)
+            sum_i += sumsqr(vertcat(*[X[j][0, i] for j in range(N + 1)]) - goal_stabilize)
         except:
             assert False
     expected_cost = sum_i / n_sample
