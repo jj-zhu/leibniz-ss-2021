@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from casadi import *
 
 # use sklearn for kernel/gram matrix computation
-sys.path.append("..")
+sys.path.append("../..")
 
 # my python tools
 from src.socp import scenario_mpc
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     )
 
     # %% save data
-    with open('data/data1.pk', 'wb') as f:
+    with open('data1.pk', 'wb') as f:
         pickle.dump(X, f)
-    with open('data/data2.pk', 'wb') as f:
+    with open('data2.pk', 'wb') as f:
         pickle.dump(X_2, f)

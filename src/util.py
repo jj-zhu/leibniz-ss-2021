@@ -23,6 +23,7 @@ def rkhs_dist(x, wx, y, wy, kernel, **param):
 
 def mmd_sqr(x, y, kernel, is_biased=True, **param):
     # compute gram matrices
+    # J. Zhu
     Kxx, Kxy, Kyy = gram_mat(x, y, kernel=kernel, **param)
 
     # coeff for MMD
