@@ -1,6 +1,6 @@
-# Practical Exercises for Leibniz MMS Summer School 2021
+# Robust Optimization and Learning Mini-course, Leibniz MMS Summer School 2021, Dagstuhl Castle
 
-There are three notebooks invovled:
+There are three notebooks involved:
 - 'mmd_nb.ipynb' computing MMD
 - 'dynamics_nb.ipynb' using MMD to compare two dynamical system trajectories 
 - 'robust_lsq_nb.ipynb' using DRO to solve a robust least squares problem with MMD ambiguity set
