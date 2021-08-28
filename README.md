@@ -15,3 +15,4 @@ There are three notebooks involved:
 - For the nonlinear DRO solver, we used the algorithm in this paper: https://arxiv.org/pdf/2006.06981.pdf
 - For more information about the MMD, see the 2012 paper: https://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf
 - For the dynamical system data, we used the set up in this paper: https://arxiv.org/pdf/2001.10398.pdf
+- In the dynamics exercise, the procedure for comparing system states using MMD is detailed in this paper: https://arxiv.org/pdf/1911.11082.pdf
